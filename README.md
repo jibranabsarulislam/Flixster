@@ -1,9 +1,9 @@
-# Flix
-Flix is an app that allows users to browse movies from the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+# Flixster
+Flixster is an app that allows users to browse movies from the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 ---
 
-## Flix Part 1
+## Flixster Part 1
 
 ### User Stories
 
@@ -25,7 +25,9 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 <img src="YOUR_GIF_URL_HERE" width=250><br>
 
 ### Notes
-Accidentally tried moving folders around without updated references and that totally ruined everything. Remade project and things work properly now. Also panicked when app stopped working until I realized I had to add back internet permissions in the AndroidManifest.xml
+Accidentally tried moving folders around without updated references and that totally ruined everything. Remade project and things work properly now. Also panicked when app stopped working until I realized I had to add back internet permissions in the AndroidManifest.xml.
+
+Made use of methods from [pasan](https://pasanlive.com/2017/03/12/add-read-more-less-to-android-textview/) to handle long movie overviews.
 
 ### Open-source libraries used
 
