@@ -12,6 +12,7 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+    String rating;
 
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w780/%s",backdropPath);
@@ -29,6 +30,10 @@ public class Movie {
         return overview;
     }
 
+    public String getRating() {
+        return rating + "/10";
+    }
+
     public String[] getPosterSizes(JSONObject jsonObject) throws JSONException  {
         return jsonObject.getString("poster_sizes").split(",");
     }
@@ -38,6 +43,7 @@ public class Movie {
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
+        rating = jsonObject.getString("vote_average");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {

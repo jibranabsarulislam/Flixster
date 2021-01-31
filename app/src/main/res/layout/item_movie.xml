@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="187dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
@@ -36,4 +36,18 @@
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivPoster"
         tools:text = "sample text..." />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/tvTitle"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="7.0/10"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 </RelativeLayout>

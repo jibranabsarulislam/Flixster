@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.main.R;
 import com.example.flixster.model.Movie;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -53,18 +56,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        TextView rating;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            rating = itemView.findViewById(R.id.rating);
+
         }
 
         public void bind(Movie movie) {
+            rating.setText(""+movie.getRating());
             tvTitle.setText(movie.getTitle());
-            String imgUrl;
             tvOverview.setText(movie.getOverview());
+
+            String imgUrl;
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imgUrl = movie.getBackdropPath();
             }
