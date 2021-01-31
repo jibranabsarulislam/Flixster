@@ -58,6 +58,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
+    // addReadMore and addReadLess methods 
+    // found and implemented from https://pasanlive.com/2017/03/12/add-read-more-less-to-android-textview/
+
     private void addReadMore(final String text, final TextView textView) {
         if(text.length()>maxLength) {
             SpannableString ss = new SpannableString(text.substring(0, maxLength) + "... read more");
