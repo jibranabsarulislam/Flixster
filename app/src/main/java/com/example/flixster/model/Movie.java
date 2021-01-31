@@ -1,5 +1,18 @@
 package com.example.flixster.model;
 
+import android.os.Build;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.example.main.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,9 +41,9 @@ public class Movie {
     }
 
     public String getOverview() {
-        if (overview.length()>maxLength)
-            return overview.substring(0, maxLength-3)+"...";
-        else
+//        if (overview.length()>maxLength)
+//            return overview.substring(0, maxLength-3)+"...";
+//        else
             return overview;
     }
 
@@ -56,5 +69,51 @@ public class Movie {
             movies.add(new Movie(movieJsonArray.getJSONObject(i)));
         }
         return movies;
+    }
+
+    private void addReadMore(final String text, final TextView textView) {
+        SpannableString ss = new SpannableString(text.substring(0, maxLength) + "... read more");
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                addReadLess(text, textView);
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    ds.setColor(getResources().getColor(R.color.color_primary, getTheme()));
+//                } else {
+//                    ds.setColor(getResources().getColor(R.color.color_primary));
+//                }
+            }
+        };
+        ss.setSpan(clickableSpan, ss.length() - 10, ss.length() , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(ss);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private void addReadLess(final String text, final TextView textView) {
+        SpannableString ss = new SpannableString(text + " read less");
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                addReadMore(text, textView);
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    ds.setColor(getResources().getColor(R.color.color_primary, getTheme()));
+//                } else {
+//                    ds.setColor(getResources().getColor(R.color.color_primary));
+//                }
+            }
+        };
+        ss.setSpan(clickableSpan, ss.length() - 10, ss.length() , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(ss);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

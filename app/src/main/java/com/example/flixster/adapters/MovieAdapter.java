@@ -2,6 +2,11 @@ package com.example.flixster.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +31,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     Context context;
     List<Movie> movies;
+    final int maxLength = 150;
 
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
@@ -52,6 +58,57 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
+    private void addReadMore(final String text, final TextView textView) {
+        if(text.length()>maxLength) {
+            SpannableString ss = new SpannableString(text.substring(0, maxLength) + "... read more");
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                    addReadLess(text, textView);
+                }
+
+                @Override
+                public void updateDrawState(TextPaint ds) {
+                    super.updateDrawState(ds);
+                    ds.setUnderlineText(false);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    ds.setColor(getResources().getColor(R.color.color_primary, getTheme()));
+//                } else {
+//                    ds.setColor(getResources().getColor(R.color.color_primary));
+//                }
+                }
+            };
+            ss.setSpan(clickableSpan, ss.length() - 10, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textView.setText(ss);
+            textView.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+        else
+            textView.setText(text);
+    }
+
+    private void addReadLess(final String text, final TextView textView) {
+        SpannableString ss = new SpannableString(text + " read less");
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                addReadMore(text, textView);
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    ds.setColor(getResources().getColor(R.color.color_primary, getTheme()));
+//                } else {
+//                    ds.setColor(getResources().getColor(R.color.color_primary));
+//                }
+            }
+        };
+        ss.setSpan(clickableSpan, ss.length() - 10, ss.length() , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(ss);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle;
         TextView tvOverview;
@@ -70,7 +127,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public void bind(Movie movie) {
             rating.setText(""+movie.getRating());
             tvTitle.setText(movie.getTitle());
-            tvOverview.setText(movie.getOverview());
+            addReadMore(movie.getOverview(), tvOverview);
+//            tvOverview.setText(movie.getOverview());
 
             String imgUrl;
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
