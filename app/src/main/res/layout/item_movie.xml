@@ -32,22 +32,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
+        android:layout_alignEnd="@+id/tvTitle"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
         android:layout_toEndOf="@+id/ivPoster"
-        tools:text = "sample text..." />
+        tools:text="sample text..."
+        tools:maxLength="150"/>
 
     <TextView
         android:id="@+id/rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tvTitle"
+        android:layout_width="83dp"
+        android:layout_height="328dp"
+        android:layout_alignBottom="@+id/tvOverview"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="-264dp"
         android:layout_toEndOf="@+id/tvTitle"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="7.0/10"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 </RelativeLayout>

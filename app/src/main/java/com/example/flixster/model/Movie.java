@@ -13,6 +13,7 @@ public class Movie {
     String title;
     String overview;
     String rating;
+    int maxLength = 150; //item_movie.xml line 41  tools:maxLength="150"
 
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w780/%s",backdropPath);
@@ -27,7 +28,10 @@ public class Movie {
     }
 
     public String getOverview() {
-        return overview;
+        if (overview.length()>maxLength)
+            return overview.substring(0, maxLength-3)+"...";
+        else
+            return overview;
     }
 
     public String getRating() {
