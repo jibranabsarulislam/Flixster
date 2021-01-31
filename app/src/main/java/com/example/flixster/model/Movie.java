@@ -44,7 +44,7 @@ public class Movie {
 //        if (overview.length()>maxLength)
 //            return overview.substring(0, maxLength-3)+"...";
 //        else
-            return overview;
+        return overview;
     }
 
     public String getRating() {
