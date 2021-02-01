@@ -2,6 +2,7 @@ package com.example.flixster.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -31,7 +32,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     Context context;
     List<Movie> movies;
-    final int maxLength = 150;
+    final int maxLength = 180;
 
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
@@ -50,6 +51,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d("MovieAdapter", "onBindViewHodler" + position);
         Movie movie = movies.get(position);
+        if (position%2==0)
+            holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+        else
+            holder.itemView.setBackgroundColor(Color.parseColor("#e3e3e2"));
         holder.bind(movie);
     }
 
@@ -57,7 +62,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public int getItemCount() {
         return movies.size();
     }
-    
+
     // addReadMore and addReadLess methods
     // found and implemented from https://pasanlive.com/2017/03/12/add-read-more-less-to-android-textview/
 

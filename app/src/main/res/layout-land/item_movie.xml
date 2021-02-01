@@ -24,6 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:fontFamily="sans-serif-medium"
         android:textSize="24dp"
         tools:text="Fast Furious Presents: Hobbs Shaw" />
 
