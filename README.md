@@ -21,7 +21,7 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 
 ### App Walkthough GIF
 
-<img src="https://imgur.com/r11mq2w.gif" width=250><br>
+<img src="https://imgur.com/r11mq2w.gif" width=500><br>
 
 ### Notes
 Accidentally tried moving folders around without updated references and that totally ruined everything. Remade project and things work properly now. Also panicked when app stopped working until I realized I had to add back internet permissions in the AndroidManifest.xml.
