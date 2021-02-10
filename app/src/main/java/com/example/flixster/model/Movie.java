@@ -29,6 +29,12 @@ public class Movie {
     String overview;
     String rating;
     double ratingD;
+
+    public int getMovieID() {
+        return movieID;
+    }
+
+    int movieID;
     int maxLength = 150; //item_movie.xml line 41  tools:maxLength="150"
 
     //needed by parceler
@@ -73,6 +79,7 @@ public class Movie {
         overview = jsonObject.getString("overview");
         rating = jsonObject.getString("vote_average");
         ratingD = jsonObject.getDouble("vote_average");
+        movieID = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
