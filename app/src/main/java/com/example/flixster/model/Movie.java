@@ -16,17 +16,31 @@ import com.example.main.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Movie {
     String backdropPath;
     String posterPath;
     String title;
     String overview;
     String rating;
+    double ratingD;
+
+    public int getMovieID() {
+        return movieID;
+    }
+
+    int movieID;
     int maxLength = 150; //item_movie.xml line 41  tools:maxLength="150"
+
+    //needed by parceler
+    public Movie() {
+
+    }
 
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/w780/%s",backdropPath);
@@ -50,6 +64,9 @@ public class Movie {
     public String getRating() {
         return rating + "/10";
     }
+    public double getRatingD() {
+        return ratingD;
+    }
 
     public String[] getPosterSizes(JSONObject jsonObject) throws JSONException  {
         return jsonObject.getString("poster_sizes").split(",");
@@ -61,6 +78,8 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         rating = jsonObject.getString("vote_average");
+        ratingD = jsonObject.getDouble("vote_average");
+        movieID = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
